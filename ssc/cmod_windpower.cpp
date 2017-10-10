@@ -336,9 +336,7 @@ void cm_windpower::exec()
 		// metric outputs moved to technology
 		double kWhperkW = 0.0;
 		double nameplate = as_double("system_capacity");
-		double annual_energy = 0.0;
-		for (i = 0; i < nstep; i++)
-			annual_energy += farmpwr[i];
+		double annual_energy = as_double("annual_energy");
 		if (nameplate > 0) kWhperkW = annual_energy / nameplate;
 		assign("capacity_factor", var_data((ssc_number_t)(kWhperkW / 87.6)));
 		assign("kwh_per_kw", var_data((ssc_number_t)kWhperkW));
@@ -377,7 +375,7 @@ void cm_windpower::exec()
 	util::matrix_t<ssc_number_t> &mat_distcross = allocate_matrix("dist_c", nstep, wpc.m_iNumberOfTurbinesInFarm);
 
 	std::string cwd = "";
-	if (IMITATE_OPENWIND) cwd = util::get_cwd(); // if we're trying to imitate openWind, we might want to create detailed debug files
+	
 	bool bCreateFarmOutput = (cwd == "C:\\svn_NREL\\main\\samwx\\deploy"); // limit debug file creation to tom's computers
 
 	// if the model needs arrays allocated, this command does it once - has to be done after all properties are set above

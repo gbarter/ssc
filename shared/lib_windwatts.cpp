@@ -79,43 +79,6 @@ bool wind_power_calculator::InitializeModel()
 		// EV model expects the TI to be in units of % (0 to 100), not 0 to 1
 		m_dTurbulenceIntensity *= 100;
 	}
-
-	if(IMITATE_OPENWIND) // should only be true if in debug mode
-	{
-		if(m_iLengthOfTurbinePowerCurveArray < 26)
-		{
-			m_sErrDetails = "supposed to be imitating openWind, but wrong turbine curve";
-			return false;
-		}
-		// fill m_adPowerCurveRPM with values for a specific turbine from openWind, just so we can compare to openWind
-		m_adPowerCurveRPM[0] = 0;
-		m_adPowerCurveRPM[1] = 0;
-		m_adPowerCurveRPM[2] = 0;
-		m_adPowerCurveRPM[3] = 11;
-		m_adPowerCurveRPM[4] = 12;
-		m_adPowerCurveRPM[5] = 13;
-		m_adPowerCurveRPM[6] = 14;
-		m_adPowerCurveRPM[7] = 15;
-		m_adPowerCurveRPM[8] = 16;
-		m_adPowerCurveRPM[9] = 17;
-		m_adPowerCurveRPM[10] = 18;
-		m_adPowerCurveRPM[11] = 19;
-		m_adPowerCurveRPM[12] = 20;
-		m_adPowerCurveRPM[13] = 20.16;
-		m_adPowerCurveRPM[14] = 20.32;
-		m_adPowerCurveRPM[15] = 20.48;
-		m_adPowerCurveRPM[16] = 20.64;
-		m_adPowerCurveRPM[17] = 20.8;
-		m_adPowerCurveRPM[18] = 20.96;
-		m_adPowerCurveRPM[19] = 21.12;
-		m_adPowerCurveRPM[20] = 21.28;
-		m_adPowerCurveRPM[21] = 21.44;
-		m_adPowerCurveRPM[22] = 21.6;
-		m_adPowerCurveRPM[23] = 21.76;
-		m_adPowerCurveRPM[24] = 21.92;
-		m_adPowerCurveRPM[25] = 22;		
-	}
-
 	return true;
 }
 
